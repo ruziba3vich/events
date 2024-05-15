@@ -13,7 +13,3 @@ type UserRepository interface {
 	DeleteEvent(models.DeleteEventRequest) error
 	GetAllEvents(models.GetAllEventsRequest) ([]postgres.EventDTO, error)
 }
-
-func NewUserRepository() {
-
-}
