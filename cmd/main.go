@@ -22,9 +22,9 @@ func main() {
 	router.POST("/register", handler.RegisterHandler)
 	router.POST("/login", handler.LogInHandler)
 	router.POST("/create-event", handler.CreateEventHandler)
-	router.POST("/update-event/:id", handler.UpdateEventHandler)
-	router.POST("/delete-event/:id", handler.DeleteEventHandler)
-	router.POST("/get-events", handler.GetAllEventsHandler)
+	router.PUT("/update-event/:id", handler.UpdateEventHandler)
+	router.DELETE("/delete-event/:id", handler.DeleteEventHandler)
+	router.GET("/get-events", handler.GetAllEventsHandler)
 
 	address := "localhost:7777"
 	log.Println("Server is listening on", address)
