@@ -8,7 +8,7 @@ import (
 type UserRepository interface {
 	Register(models.RegisterRequest) (string, error)
 	LogIn(models.RegisterRequest) (string, error)
-	CreateEvent(models.CreateEventRequest) (*models.Event, error)
+	CreateEvent(models.CreateEventRequest) (*postgres.EventDTO, error)
 	UpdateEvent(models.UpdateEventRequest) (*postgres.EventDTO, error)
 	DeleteEvent(models.DeleteEventRequest) error
 	GetAllEvents(models.GetAllEventsRequest) ([]postgres.EventDTO, error)

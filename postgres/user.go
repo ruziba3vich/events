@@ -44,9 +44,8 @@ func (u *UserRepo) LogIn(req models.RegisterRequest) (string, error) {
 	return token, nil
 }
 
-func (u *UserRepo) CreateEvent(req models.CreateEventRequest) (*models.Event, error) {
+func (u *UserRepo) CreateEvent(req models.CreateEventRequest) (*EventDTO, error) {
 	query := `INSERT INTO Events (
-		user_id,
 		title,
 		description,
 		event_time
@@ -54,14 +53,13 @@ func (u *UserRepo) CreateEvent(req models.CreateEventRequest) (*models.Event, er
 		$1, $2, $3, $4
 	) RETURNING id, user_id, title, description, event_time;
 	`
-	var event models.Event
+	var event EventDTO
 
 	row := u.db.QueryRow(query,
-		req.UserId,
 		req.Title,
 		req.Description,
 		req.EventTime)
-	if err := row.Scan(&event.Id, &event.UserId, &event.Title, &event.Description, &event.EventTime); err != nil {
+	if err := row.Scan(&event.Id, &event.Title, &event.Description, &event.EventTime); err != nil {
 		return nil, err
 	}
 	query = `
